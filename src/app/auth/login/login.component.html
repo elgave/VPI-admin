@@ -1,0 +1,45 @@
+<div class="body">
+    <div class="login">
+        <img src="./assets/img/usuario.png" width="50%">
+        <h1>Login</h1>
+
+        <form *ngIf="!resetearPass" #f="ngForm" (ngSubmit)="onLogin()" novalidate>
+            <mat-form-field class="ancho" appearance="fill">
+                <mat-label>Usuario</mat-label>
+                <input matInput autocomplete="off" name="email" id="email" [(ngModel)]="email" required >
+            </mat-form-field>
+            <mat-form-field class="ancho" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput  type="password" name="password" id="password" [(ngModel)]="password" required autocomplete="off">
+            </mat-form-field>
+            <br>
+            
+
+            <div class=" mb-4 d-flex justify-content-center "  >
+                <!-- Simple link -->
+                <a class="link-warning" type="button" (click)="ResetPass()">Olvido su contraseña?</a>
+            </div>
+
+            <button type="submit" mat-raised-button class="ancho boton" color="primary">Ingresar</button>
+        </form>
+        <form *ngIf="resetearPass" #f="ngForm" (ngSubmit)="onSendEmail()" novalidate>
+        
+            <div class="mb-4">
+                <label class="form-label" for="loginName">Correo electronico</label>
+                <input type="email" name="email" id="email" class="form-control" [(ngModel)]="email" required />
+            </div>
+
+            <div class=" mb-4 d-flex justify-content-center ">
+                <!-- Simple link -->
+                <a class="link-warning" type="button" (click)="ResetPass()">Volver</a>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4" style="background-color: #FFA900;" [disabled]="!f.valid">Recuperar Contraseña</button>
+        </form>
+
+    </div>
+
+</div>
+
+<app-footer></app-footer>
