@@ -13,7 +13,7 @@ import { Restaurante } from '../models/Restaurante/Restaurante';
 })
 export class AuthService {
 
-  authURL = 'http://localhost:8080/auth/'
+  authURL = 'http://localhost:8282/auth/'
   authURL2 = 'http://localhost:8282/cliente/'
 
 constructor(private httpClient: HttpClient) { }

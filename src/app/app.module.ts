@@ -32,6 +32,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { HomeComponent } from './home/home.component';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
 
 
 
@@ -44,6 +45,7 @@ import { HomeComponent } from './home/home.component';
     SendEmailComponent,
     FooterComponent,
     HomeComponent,
+    NavMenuComponent,
    ],
   imports: [
     BrowserModule,
