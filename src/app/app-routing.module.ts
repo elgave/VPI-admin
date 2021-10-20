@@ -5,6 +5,7 @@ import { GuardService as guard} from './service/guard/guard.service';
 import { SendEmailComponent } from './changePassword/send-email/send-email.component';
 import { ChangePasswordComponent } from './changePassword/change-password/change-password.component';
 import { HomeComponent } from './home/home.component';
+import { AdministradorRestaurantesComponent } from './administradorRestaurantes/administradorRestaurantes.component';
 
 
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
   {path: 'changePassword/:tokenPassword', component: ChangePasswordComponent},
+  {path: 'restaurantes', component: AdministradorRestaurantesComponent},
   {path: '**', redirectTo: '', pathMatch: 'full'}
   
 

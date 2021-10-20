@@ -80,3 +80,9 @@ a, .fa-power-off{
 .dropdown-item{
     background-color: #39B3D7;
 }
+.user-img{
+    filter: invert();
+    opacity: 80%;
+    margin-top: 20px;
+    margin-bottom: 60px;
+}

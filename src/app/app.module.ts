@@ -33,12 +33,13 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { HomeComponent } from './home/home.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { AdministradorRestaurantesComponent } from './administradorRestaurantes/administradorRestaurantes.component';
 
 
 
 
 @NgModule({
-  declarations: [				
+  declarations: [					
     AppComponent,
     LoginComponent,
     ChangePasswordComponent,
@@ -46,6 +47,8 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
     FooterComponent,
     HomeComponent,
     NavMenuComponent,
+    AdministradorRestaurantesComponent,
+    AdministradorRestaurantesComponent
    ],
   imports: [
     BrowserModule,
