@@ -35,12 +35,13 @@ import { HomeComponent } from './home/home.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { AdministradorRestaurantesComponent } from './administradorRestaurantes/administradorRestaurantes.component';
 import { AdministradorAltaComponent } from './administradorAlta/administradorAlta.component';
+import { AdministradorUsuariosComponent } from './administradorUsuarios/administradorUsuarios.component';
 
 
 
 
 @NgModule({
-  declarations: [						
+  declarations: [							
     AppComponent,
     LoginComponent,
     ChangePasswordComponent,
@@ -50,7 +51,8 @@ import { AdministradorAltaComponent } from './administradorAlta/administradorAlt
     NavMenuComponent,
     AdministradorRestaurantesComponent,
     AdministradorRestaurantesComponent,
-    AdministradorAltaComponent
+    AdministradorAltaComponent,
+    AdministradorUsuariosComponent
    ],
   imports: [
     BrowserModule,
