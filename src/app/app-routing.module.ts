@@ -6,6 +6,7 @@ import { SendEmailComponent } from './changePassword/send-email/send-email.compo
 import { ChangePasswordComponent } from './changePassword/change-password/change-password.component';
 import { HomeComponent } from './home/home.component';
 import { AdministradorRestaurantesComponent } from './administradorRestaurantes/administradorRestaurantes.component';
+import { AdministradorAltaComponent } from './administradorAlta/administradorAlta.component';
 
 
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'changePassword/:tokenPassword', component: ChangePasswordComponent},
   {path: 'restaurantes', component: AdministradorRestaurantesComponent},
+  {path: 'altaAdministrador', component: AdministradorAltaComponent},
   {path: '**', redirectTo: '', pathMatch: 'full'}
   
 

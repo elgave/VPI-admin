@@ -34,12 +34,13 @@ import { MatListModule } from '@angular/material/list';
 import { HomeComponent } from './home/home.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { AdministradorRestaurantesComponent } from './administradorRestaurantes/administradorRestaurantes.component';
+import { AdministradorAltaComponent } from './administradorAlta/administradorAlta.component';
 
 
 
 
 @NgModule({
-  declarations: [					
+  declarations: [						
     AppComponent,
     LoginComponent,
     ChangePasswordComponent,
@@ -48,7 +49,8 @@ import { AdministradorRestaurantesComponent } from './administradorRestaurantes/
     HomeComponent,
     NavMenuComponent,
     AdministradorRestaurantesComponent,
-    AdministradorRestaurantesComponent
+    AdministradorRestaurantesComponent,
+    AdministradorAltaComponent
    ],
   imports: [
     BrowserModule,
