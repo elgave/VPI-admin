@@ -11,6 +11,7 @@ export class Restaurante {
     foto: string;
     precioEnvio: Number;
     horario: string;
+    confirmado: boolean;
 
     /**/
    
@@ -19,7 +20,7 @@ export class Restaurante {
 
     constructor(email: string, nombreRestaurante: string, nroHabilitacion: string,
         razonSocial: string, rut: string, direccion: string, descripcionMenues: string, celular: string,
-        foto: string, precioEnvio: Number, horario: string)
+        foto: string, precioEnvio: Number, horario: string, confirmado: boolean)
         {
         this.email = email;
         this.nombreRestaurante = nombreRestaurante;
@@ -32,6 +33,7 @@ export class Restaurante {
         this.foto = foto;
         this.precioEnvio = precioEnvio;
         this.horario = horario;
+        this.confirmado = confirmado;
     }
 
 }
