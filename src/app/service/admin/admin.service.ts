@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RechazoRest } from 'src/app/models/Restaurante/RechazoRest';
 import { Restaurante } from 'src/app/models/Restaurante/Restaurante';
+import { BusquedaUsuario } from 'src/app/models/usuario/busquedaUsuario';
+import { Usuario } from '../../models/usuario/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +26,10 @@ export class AdminService {
 
   public rechazarRest(rechazo: RechazoRest): Observable<RechazoRest> {
     return this.httpClient.post<RechazoRest>(this.authURL + 'rechazarRestaurante', rechazo);
+  }
+
+  public listarUsuarios(usuarioBusqueda: BusquedaUsuario): Observable<Usuario[]> {
+    return this.httpClient.post<Usuario[]>(this.authURL + 'usuariosBusqueda', usuarioBusqueda);
   }
   
   }

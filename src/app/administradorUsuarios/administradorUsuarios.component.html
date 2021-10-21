@@ -9,15 +9,14 @@
             <nav class="navbar filtros">
 
                 <div class="container-fluid">
-                  <select class="form-select" aria-label="Default select example">
-                    <option selected>None</option>
-                    <option value="1">Clientes</option>
-                    <option value="2">Restaurantes</option>
+                    <select class="form-select" aria-label="Default select example" [(ngModel)]="seleccionado" (change)="capturar()">
+                        <option selected value="1">Clientes</option>
+                        <option value="2">Restaurantes</option>
                   </select>
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">Bloqueados</label>
-                  </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [(ngModel)]="isBloqueado" data-md-icheck (change)="capturarBloqueado($event)" />
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Bloqueados</label>
+                    </div>
                     <form class="search-container" action="//llamaswill.tumblr.com/search">
                         <input id="search-box" type="text" class="search-box" name="q" />
                         <label for="search-box"><span class="fas fa-search"></span></label>
@@ -29,21 +28,20 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Foto</th>
                             <th>Email</th>
-                            <th>Fecha</th>
-                            <th>Rol</th>
+                            <th>Nombre</th>
+                            <th>Celular</th>
                             <th></th>
-                            <th></th>
+
                         </tr>
                     </thead>
                     <!-- <tbody *ngFor="let usuario of usuarios" -->
-                    <tbody>
+                    <tbody *ngFor="let usuario of usuarios">
                         <tr>
-                            <td><img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png"></td>
-                            <td>Celda</td>
-                            <td>Celda</td>
-                            <td>Celda</td>
+                            <!--  <td><img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png"></td>-->
+                            <td>{{usuario.email}}</td>
+                            <td>{{usuario.nombre}}</td>
+                            <td>{{usuario.celular}}</td>
                             <td>
 
                                 <!--eliminar cuenta de usuario -->
@@ -104,8 +102,8 @@
                                                 <h6 class="h6">Se desbloqueará el usuario con NOMBREBARIABLE</h6>
                                             </div>
                                             <div class="modal-footer">
-                                              <button type="button" class="btn btn-outline-warning btn-rounded" data-mdb-dismiss="modal" data-mdb-ripple-color="dark">Cerrar</button>
-                                              <button type="button" class="btn btn-warning btn-rounded" data-mdb-dismiss="modal" data-mdb-ripple-color="dark">Confirmar</button>
+                                                <button type="button" class="btn btn-outline-warning btn-rounded" data-mdb-dismiss="modal" data-mdb-ripple-color="dark">Cerrar</button>
+                                                <button type="button" class="btn btn-warning btn-rounded" data-mdb-dismiss="modal" data-mdb-ripple-color="dark">Confirmar</button>
                                             </div>
                                         </div>
                                     </div>
