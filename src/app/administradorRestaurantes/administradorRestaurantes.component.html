@@ -42,6 +42,8 @@
                             <td>
                                 <!--aporbar alta de usuario -->
                                 <a (click)="seleccionar(restaurante)" data-mdb-toggle="modal" data-mdb-target="#altaUsuario"><i class="far fa-check-circle"></i></a>
+                                <!--rechazar alta de usuario -->
+                                <a (click)="seleccionar(restaurante)" data-mdb-toggle="modal" data-mdb-target="#rechazarUsuario"><i class="fas fa-backspace"></i></a>
                                 <!--Esto genera la calificación VPI para el restaurante -->
                                 <!-- creo que el <a> va con un *ngIf si el estado es aprobado -->
                                 <a href="#" data-mdb-toggle="modal" data-mdb-target="#califiacionVPI"><i class="fas fa-star"></i></a>
@@ -64,8 +66,7 @@
                                 </div>
                                 <!-- fin del modal -->
 
-                                <!--rechazar alta de usuario -->
-                                <a href="#" data-mdb-toggle="modal" data-mdb-target="#rechazarUsuario"><i class="fas fa-backspace"></i></a>
+
                                 <!-- Modal -->
                                 <div class="modal fade" id="rechazarUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -74,14 +75,19 @@
                                                 <h5 class="modal-title" id="exampleModalLabel">Rechazar Restaurante</h5>
                                                 <i class="fas fa-times" data-mdb-dismiss="modal"></i>
                                             </div>
-                                            <div class="modal-body">
-                                                <h6 class="delete-h6">Se rechazará la solicitud del restaurante NOMBRERESTAURANTE</h6>
+                                            <div class="modal-body" *ngIf="ready">
+                                                <h6 class="delete-h6">Se rechazará la solicitud del restaurante {{restauranteSeleccionado.nombreRestaurante}}</h6>
+                                            </div>
+                                            <div class="form-outline" (ngSubmit)="rechazarRestaurante()" novalidate>
+                                                <input type="text" id="form12" class="form-control" [(ngModel)]="motivo" />
+                                                <label class="form-label" for="form12">Ingrese motivo de rechazo</label>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-outline-danger btn-rounded" data-mdb-ripple-color="dark" data-mdb-dismiss="modal">
                                 Cancelar
                               </button>
-                                                <button type="button" class="btn btn-warning btn-rounded delete">Confirmar</button>
+
+                                                <button type="button" (click)="rechazarRestaurante()" class="btn btn-warning btn-rounded delete">Confirmar</button>
                                             </div>
                                         </div>
                                     </div>

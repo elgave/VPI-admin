@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Restaurante } from '../models/Restaurante/Restaurante';
 import { AdminService } from '../service/admin/admin.service';
+import { RechazoRest } from '../models/Restaurante/RechazoRest';
 
 @Component({
   selector: 'app-administradorRestaurantes',
@@ -13,6 +14,9 @@ export class AdministradorRestaurantesComponent implements OnInit {
   restaurantes: Restaurante[] = [];
   ready: boolean;
   restauranteSeleccionado: Restaurante;
+  rechazo: RechazoRest;
+  motivo: string = '';
+
 
   constructor(
     private adminService: AdminService,
@@ -64,5 +68,24 @@ export class AdministradorRestaurantesComponent implements OnInit {
         }
       );
     }
+
+    rechazarRestaurante(){
+      this.rechazo = new RechazoRest(this.restauranteSeleccionado.email, this.motivo)  
+      this.adminService.rechazarRest(this.rechazo).subscribe(
+        data=> {
+          this.toastr.success('Restaurante rechazado con exito con exito', '',{
+            timeOut: 3000, positionClass: 'toast-top-center'
+          });
+          
+          this.cargarRest();
+          },
+          err=>{
+           this.toastr.error( 'error', '',{
+              timeOut: 3000, positionClass: 'toast-top-center',
+          });
+           this.cargarRest();
+          }
+        );
+      }
 
 }
