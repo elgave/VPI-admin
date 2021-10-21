@@ -66,7 +66,7 @@
                                 <!-- fin del modal -->
 
                                 <!--bloquear usuario -->
-                                <a (click)="seleccionar(usuario)" data-mdb-toggle="modal" data-mdb-target="#bloquearUsuario"><i class="fas fa-ban"></i></a>
+                                <a *ngIf="!isBloqueado" (click)="seleccionar(usuario)" data-mdb-toggle="modal" data-mdb-target="#bloquearUsuario"><i class="fas fa-ban"></i></a>
                                 <!-- Modal -->
                                 <div class="modal fade" id="bloquearUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -79,13 +79,13 @@
                                                 <h6 class="h6">Se bloqueará al usuario {{usuario.nombre}}</h6>
                                             </div>
                                             <br>
-                                            <div class="form-outline" (ngSubmit)="bloquearRestaurante()" novalidate>
+                                            <div class="form-outline" (ngSubmit)="bloquearUsuario()" novalidate>
                                                 <input type="text" id="form12" class="form-control" [(ngModel)]="motivo" />
                                                 <label class="form-label" for="form12">Ingrese motivo de bloqueo</label>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-outline-warning btn-rounded" data-mdb-dismiss="modal" data-mdb-ripple-color="dark">Cerrar</button>
-                                                <button type="button" class="btn btn-warning btn-rounded" data-mdb-dismiss="modal" data-mdb-ripple-color="dark" (click)="bloquearRestaurante()">Confirmar</button>
+                                                <button type="button" class="btn btn-warning btn-rounded" data-mdb-dismiss="modal" data-mdb-ripple-color="dark" (click)="bloquearUsuario()">Confirmar</button>
                                             </div>
                                         </div>
                                     </div>

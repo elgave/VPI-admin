@@ -74,11 +74,12 @@ export class AdministradorUsuariosComponent implements OnInit {
 
   }
 
-  bloquearRestaurante(){
-    this.restBloq = new RechazoRest(this.usuarioSeleccionado.email, this.motivo)  
+  bloquearUsuario(){
+    this.restBloq = new RechazoRest(this.usuarioSeleccionado.email, this.motivo)
+    if(!this.isCliente){  
     this.adminService.bloquearRest(this.restBloq).subscribe(
       data=> {
-        this.toastr.success('Restaurante aprobado con exito', '',{
+        this.toastr.success('Restaurante bloqueado con exito', '',{
           timeOut: 3000, positionClass: 'toast-top-center'
         });
         console.log(data);
@@ -93,6 +94,27 @@ export class AdministradorUsuariosComponent implements OnInit {
         }
       );
     }
+    else{
+      this.adminService.bloquearCliente(this.restBloq).subscribe(
+        data=> {
+          this.toastr.success('Cliente bloqueado con exito', '',{
+            timeOut: 3000, positionClass: 'toast-top-center'
+          });
+          console.log(data);
+          this.cargarRest();
+          this.motivo = '';
+          },
+          err=>{
+           this.toastr.error( 'error', '',{
+              timeOut: 3000, positionClass: 'toast-top-center',
+          });
+           this.cargarRest();
+          }
+        );
 
+    }
+    }
+
+   
 
 }
