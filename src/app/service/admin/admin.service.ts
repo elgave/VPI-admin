@@ -32,5 +32,10 @@ export class AdminService {
     return this.httpClient.post<Usuario[]>(this.authURL + 'usuariosBusqueda', usuarioBusqueda);
   }
   
+  public bloquearRest(bloqueo: RechazoRest): Observable<string> {
+    return this.httpClient.post<string>(this.authURL + 'bloquearRestaurante', bloqueo);
+  }
+
+  
   }
   

@@ -3,6 +3,8 @@ import { ToastrService } from 'ngx-toastr';
 import { AdminService } from '../service/admin/admin.service';
 import { BusquedaUsuario } from 'src/app/models/usuario/busquedaUsuario';
 import { Usuario } from '../models/usuario/usuario';
+import { RechazoRest } from '../models/Restaurante/RechazoRest';
+import { Restaurante } from '../models/Restaurante/Restaurante';
 
 @Component({
   selector: 'app-administradorUsuarios',
@@ -20,6 +22,10 @@ export class AdministradorUsuariosComponent implements OnInit {
   capturado: string;
   marked = false;
   theCheckbox = false;
+  restBloq: RechazoRest;
+  usuarioSeleccionado: Usuario;
+  motivo: string = '';
+  ready: boolean;
 
   constructor(
     private adminService: AdminService,
@@ -31,6 +37,7 @@ export class AdministradorUsuariosComponent implements OnInit {
     this.isBloqueado = false;
     this.textoBusqueda = "";
     this.seleccionado = '1';
+    this.ready = false;
     this.cargarRest();
   }
 
@@ -60,6 +67,32 @@ export class AdministradorUsuariosComponent implements OnInit {
     this.marked= e.target.checked;
     this.cargarRest();
   }
+
+  seleccionar(res: Usuario){
+    this.ready = true;
+    this.usuarioSeleccionado = res;
+
+  }
+
+  bloquearRestaurante(){
+    this.restBloq = new RechazoRest(this.usuarioSeleccionado.email, this.motivo)  
+    this.adminService.bloquearRest(this.restBloq).subscribe(
+      data=> {
+        this.toastr.success('Restaurante aprobado con exito', '',{
+          timeOut: 3000, positionClass: 'toast-top-center'
+        });
+        console.log(data);
+        this.cargarRest();
+        this.motivo = '';
+        },
+        err=>{
+         this.toastr.error( 'error', '',{
+            timeOut: 3000, positionClass: 'toast-top-center',
+        });
+         this.cargarRest();
+        }
+      );
+    }
 
 
 }
