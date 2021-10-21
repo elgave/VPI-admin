@@ -16,6 +16,10 @@ export class AdminService {
   public getRestaurantesPendientes(): Observable<Restaurante[]> {
     return this.httpClient.get<Restaurante[]>( `${this.authURL+'restaurantesPendientes'}`);
   }
+
+  public aprobarRest(idRestaurante: string): Observable<string> {
+    return this.httpClient.post<string>(this.authURL + 'aprobarRestaurante', idRestaurante);
+  }
   
   }
   

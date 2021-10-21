@@ -11,6 +11,8 @@ import { AdminService } from '../service/admin/admin.service';
 export class AdministradorRestaurantesComponent implements OnInit {
 
   restaurantes: Restaurante[] = [];
+  ready: boolean;
+  restauranteSeleccionado: Restaurante;
 
   constructor(
     private adminService: AdminService,
@@ -18,7 +20,10 @@ export class AdministradorRestaurantesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.ready = false;
     this.cargarRest();
+    
+
   }
 
   cargarRest() {
@@ -26,11 +31,38 @@ export class AdministradorRestaurantesComponent implements OnInit {
       data => {
         this.restaurantes = data;
         
+        
       },
       err => {
         console.log(err);
       }
     );
+   
+    
   }
+
+  seleccionar(res: Restaurante){
+    this.ready = true;
+    this.restauranteSeleccionado = res;
+
+  }
+
+  aprobarRestaurante(){
+    this.adminService.aprobarRest(this.restauranteSeleccionado.email).subscribe(
+      data=> {
+        this.toastr.success('Restaurante aprobado con exito', '',{
+          timeOut: 3000, positionClass: 'toast-top-center'
+        });
+        console.log(data);
+        this.cargarRest();
+        },
+        err=>{
+         this.toastr.error( 'error', '',{
+            timeOut: 3000, positionClass: 'toast-top-center',
+        });
+         this.cargarRest();
+        }
+      );
+    }
 
 }

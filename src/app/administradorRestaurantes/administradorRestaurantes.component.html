@@ -32,7 +32,7 @@
                         </tr>
                     </thead>
                     <!-- <tbody *ngFor="let usuario of usuarios" -->
-                    <tbody *ngFor="let restaurante of restaurantes">
+                    <tbody *ngFor="let restaurante of restaurantes; let i=index ">
                         <tr>
                             <td>{{restaurante.email}}</td>
                             <td>{{restaurante.nombreRestaurante}}</td>
@@ -40,6 +40,8 @@
                             <td>{{restaurante.rut}}</td>
                             <td *ngIf="!restaurante.confirmado">Pendiente</td>
                             <td>
+                                <!--aporbar alta de usuario -->
+                                <a (click)="seleccionar(restaurante)" data-mdb-toggle="modal" data-mdb-target="#altaUsuario"><i class="far fa-check-circle"></i></a>
                                 <!--Esto genera la calificación VPI para el restaurante -->
                                 <!-- creo que el <a> va con un *ngIf si el estado es aprobado -->
                                 <a href="#" data-mdb-toggle="modal" data-mdb-target="#califiacionVPI"><i class="fas fa-star"></i></a>
@@ -86,8 +88,7 @@
                                 </div>
                                 <!-- fin del modal -->
 
-                                <!--aporbar alta de usuario -->
-                                <a href="" data-mdb-toggle="modal" data-mdb-target="#altaUsuario"><i class="far fa-check-circle"></i></a>
+
                                 <!-- Modal -->
                                 <div class="modal fade" id="altaUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -96,11 +97,11 @@
                                                 <h5 class="modal-title" id="exampleModalLabel">Aprobar Restaurante</h5>
                                                 <i class="fas fa-times" data-mdb-dismiss="modal"></i>
                                             </div>
-                                            <div class="modal-body">
-                                                <h6 class="h6">Se arpobará la solicitud del restaurante NOMBRERESTAURANTE</h6>
+                                            <div class="modal-body" *ngIf="ready">
+                                                <h6 class="h6">Se arpobará la solicitud del restaurante {{restauranteSeleccionado.nombreRestaurante}}</h6>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-warning btn-rounded" data-mdb-dismiss="modal" data-mdb-ripple-color="dark">Cerrar</button>
+                                                <button (click)="aprobarRestaurante()" type="button" class="btn btn-warning btn-rounded" data-mdb-dismiss="modal" data-mdb-ripple-color="dark">Confirmar</button>
                                             </div>
                                         </div>
                                     </div>
