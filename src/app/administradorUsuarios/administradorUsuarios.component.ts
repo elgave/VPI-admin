@@ -115,6 +115,10 @@ export class AdministradorUsuariosComponent implements OnInit {
     }
     }
 
+    onKey(event: any) { 
+      this.textoBusqueda = event.target.value;
+      this.cargarRest();
+    }
    
 
 }

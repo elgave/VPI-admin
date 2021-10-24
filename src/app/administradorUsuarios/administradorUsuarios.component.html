@@ -18,7 +18,8 @@
                         <label class="form-check-label" for="flexSwitchCheckDefault">Bloqueados</label>
                     </div>
                     <form class="search-container" action="//llamaswill.tumblr.com/search">
-                        <input id="search-box" type="text" class="search-box" name="q" />
+                        <input id="search-box" type="text" class="search-box" (keyup)="onKey($event)" />
+                        <p>{{textoBusqueda}}</p>
                         <label for="search-box"><span class="fas fa-search"></span></label>
                         <input type="submit" id="search-submit" />
                     </form>
