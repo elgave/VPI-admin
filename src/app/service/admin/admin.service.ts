@@ -6,6 +6,7 @@ import { Restaurante } from 'src/app/models/Restaurante/Restaurante';
 import { BusquedaUsuario } from 'src/app/models/usuario/busquedaUsuario';
 import { Usuario } from '../../models/usuario/usuario';
 import { Admin } from '../../models/Admin/Admin';
+import { EliminarUsuario } from 'src/app/models/usuario/eliminarUsuario';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,10 @@ export class AdminService {
 
   public bloquearCliente(bloqueo: RechazoRest): Observable<string> {
     return this.httpClient.post<string>(this.authURL + 'bloquearCliente', bloqueo);
+  }
+
+  public eliminarUsuario(usuario: EliminarUsuario): Observable<any> {
+    return this.httpClient.post<any>(this.authURL + 'eliminarUsuario', usuario);
   }
 
   public registarAdmin(admin: Admin): Observable<Admin> {
