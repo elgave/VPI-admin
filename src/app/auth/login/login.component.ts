@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   errMsj: string;
   resetearPass = false;
   dto: Email;
+  isAdmin: boolean = false;
 
   constructor(
     private tokenService : TokenService,
@@ -38,6 +39,7 @@ export class LoginComponent implements OnInit {
     if (this.tokenService.getToken()){
       this.isLogged = true;
       this.roles = this.tokenService.getAuthorities();
+      this.router.navigate(['/home']);
     }
   }
 
@@ -45,17 +47,33 @@ export class LoginComponent implements OnInit {
     this.usuarioLogin = new UsuarioLogin(this.email, this.password);
     this.authService.login(this.usuarioLogin).subscribe(
       data=> {
-        this.isLogged = true;
-        
-        this.tokenService.setToken(data.token);
-        this.tokenService.setUsername(data.email);
+
         this.tokenService.setAuthorities(data.authorities);
-        this.roles = data.authorities;
-        this.toastr.success('Va pa i '+ data.email, '',{
-          timeOut: 3000, positionClass: 'toast-top-center',
-        });
-        this.router.navigate(['/home']);
-        console.log(data);
+        this.roles = this.tokenService.getAuthorities();
+        this.roles.forEach( rol=>{
+          if(rol === 'Admin'){
+            this.isAdmin = true; 
+          }
+        })
+        if(this.isAdmin){
+          this.isLogged = true;
+          
+          this.tokenService.setToken(data.token);
+          this.tokenService.setUsername(data.email);
+          
+          this.roles = data.authorities;
+          this.toastr.success('Va pa i '+ data.email, '',{
+            timeOut: 3000, positionClass: 'toast-top-center',
+          });
+          this.router.navigate(['/home']);
+          console.log(data);
+        }else{
+          this.isLogged = false;   
+          this.toastr.error('Usuario con credenciales invalidas para el tipo de aplicacion', '',{
+            timeOut: 3000, positionClass: 'toast-top-center',
+          });
+          sessionStorage.clear();
+        }
       },
       err=>{
         this.isLogged = false;   
