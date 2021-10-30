@@ -1,45 +1,58 @@
-<div class="body">
+
     <div class="login">
-        <img src="./assets/img/usuario.png" width="50%">
-        <h1>Login</h1>
-
-        <form *ngIf="!resetearPass" #f="ngForm" (ngSubmit)="onLogin()" novalidate>
-            <mat-form-field class="ancho" appearance="fill">
-                <mat-label>Usuario</mat-label>
-                <input matInput autocomplete="off" name="email" id="email" [(ngModel)]="email" required >
-            </mat-form-field>
-            <mat-form-field class="ancho" appearance="fill">
-                <mat-label>Password</mat-label>
-                <input matInput  type="password" name="password" id="password" [(ngModel)]="password" required autocomplete="off">
-            </mat-form-field>
-            <br>
-            
-
-            <div class=" mb-4 d-flex justify-content-center "  >
-                <!-- Simple link -->
-                <a class="link-warning" type="button" (click)="ResetPass()">Olvido su contraseña?</a>
-            </div>
-
-            <button type="submit" mat-raised-button class="ancho boton" color="primary">Ingresar</button>
-        </form>
-        <form *ngIf="resetearPass" #f="ngForm" (ngSubmit)="onSendEmail()" novalidate>
+        <div class="container" id="container">
+            <div class="form-container sign-in-container">
+                <form *ngIf="!resetearPass" #f="ngForm" (ngSubmit)="onLogin()" novalidate>
+                    <h1>Iniciar sesión</h1>
+                    <div class="text-center mb-3">
+                    </div>           
+                        <div class="mb-4">
+                            <input type="email" name="email" id="email" class="form-control" [(ngModel)]="email" required />
+                        </div>
         
-            <div class="mb-4">
-                <label class="form-label" for="loginName">Correo electronico</label>
-                <input type="email" name="email" id="email" class="form-control" [(ngModel)]="email" required />
+                        <div class="mb-4" >
+                            <input type="password" name="password" id="password" class="form-control" [(ngModel)]="password" required />  
+                        </div>
+        
+                        <div class=" mb-4 d-flex justify-content-center "  >
+                            <!-- Simple link -->
+                            <a class="link-warning" type="button" (click)="ResetPass()">¿Olvidó su contraseña?</a>
+                        </div>
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block mb-4" style="background-color: #39c0ed"><i class="fas fa-pizza-slice"></i> Iniciar sesión</button>
+                </form>
+                        <!--Form recuperar Contraseña-->
+                        <form *ngIf="resetearPass" #f="ngForm" (ngSubmit)="onSendEmail()" novalidate>
+                            <div class="text-center mb-3">
+                                <img src="./assets/fondoLogin.png" height="220" alt="..." class="img-password" />
+                            </div>
+                
+                            <div class="mb-4">
+                                <label class="form-label" for="loginName">Correo electrónico</label>
+                                <input type="email" name="email" id="email" class="form-control" [(ngModel)]="email" required />
+                            </div>
+                
+                            <div class=" mb-4 d-flex justify-content-center ">
+                                <!-- Simple link -->
+                                <a class="link-warning" type="button" (click)="ResetPass()">Volver</a>
+                            </div>
+                
+                            <!-- Submit button -->
+                            <button type="submit" class="btn btn-primary btn-block mb-4" style="background-color: #39c0ed;" [disabled]="!f.valid">Recuperar Contraseña</button>
+                        </form>
             </div>
-
-            <div class=" mb-4 d-flex justify-content-center ">
-                <!-- Simple link -->
-                <a class="link-warning" type="button" (click)="ResetPass()">Volver</a>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-right">
+                        <img src="https://www.cppng.com/file/download/2020-06/66270-administrator-google-system-deployment-suite-software.png">
+                        <h1>Administrador</h1>
+                        <p>Mantenimiento de VPI.</p>
+                    </div>
+                </div>
             </div>
-
-            <!-- Submit button -->
-            <button type="submit" class="btn btn-primary btn-block mb-4" style="background-color: #FFA900;" [disabled]="!f.valid">Recuperar Contraseña</button>
-        </form>
-
-    </div>
-
-</div>
+            </div>
+        </div>
 
 <app-footer></app-footer>
+
+
