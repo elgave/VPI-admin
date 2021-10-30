@@ -232,10 +232,51 @@
         </div>
         <!-- Tabs content -->
         <div class="buttons-cont">
-          <button type="button" class="btn btn-danger btn-rounded">Rechazar</button>
-          <button type="button" class="btn btn-warning btn-rounded">Aprobar</button>
+          <button type="button" class="btn btn-danger btn-rounded" (click)="seleccionar(restaurante)" data-mdb-toggle="modal" data-mdb-target="#rechazarUsuario">Rechazar</button>
+          <button type="button" class="btn btn-warning btn-rounded" (click)="seleccionar(restaurante)" data-mdb-toggle="modal" data-mdb-target="#altaUsuario">Aprobar</button>
         </div>
-    </div>
+        <div class="modal fade" id="rechazarUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header delete">
+                      <h5 class="modal-title" id="exampleModalLabel">Rechazar Restaurante</h5>
+                      <i class="fas fa-times" data-mdb-dismiss="modal"></i>
+                  </div>
+                  <div class="modal-body" *ngIf="ready">
+                      <h6 class="delete-h6">Se rechazará la solicitud del restaurante {{restauranteSeleccionado.nombreRestaurante}}</h6>
+                  </div>
+                  <div class="form-outline" (ngSubmit)="rechazarRestaurante()" novalidate>
+                      <input type="text" id="form12" class="form-control" [(ngModel)]="motivo" />
+                      <label class="form-label" for="form12">Ingrese motivo de rechazo</label>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-outline-danger btn-rounded" data-mdb-ripple-color="dark" data-mdb-dismiss="modal">
+                      Cancelar
+                      </button>
+
+                      <button type="button" (click)="rechazarRestaurante()" data-mdb-dismiss="modal" class="btn btn-warning btn-rounded delete">Confirmar</button>
+                  </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="altaUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Aprobar Restaurante</h5>
+                      <i class="fas fa-times" data-mdb-dismiss="modal"></i>
+                  </div>
+                  <div class="modal-body" *ngIf="ready">
+                      <h6 class="h6">Se arpobará la solicitud del restaurante {{restauranteSeleccionado.nombreRestaurante}}</h6>
+                  </div>
+                  <div class="modal-footer">
+                      <button (click)="aprobarRestaurante()" type="button" class="btn btn-warning btn-rounded" data-mdb-dismiss="modal" data-mdb-ripple-color="dark">Confirmar</button>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
 </div>
 
 
