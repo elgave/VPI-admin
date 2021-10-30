@@ -1,0 +1,242 @@
+<app-nav-menu></app-nav-menu>
+<div class="container">
+    <div class="row" id="cont">
+        <div class="redondo contitulo col-md-1 "></div>
+        <div class="redondo contitulo col-md-10 bg-white">
+            <div class="title div-s">
+                <span> Detalle del restaurante</span>
+        </div>
+        <!-- Tabs navs -->
+        <ul class="nav nav-tabs nav-fill mb-4" id="ex1" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link active"
+              id="ex2-tab-1"
+              data-mdb-toggle="tab"
+              href="#ex2-tabs-1"
+              role="tab"
+              aria-controls="ex2-tabs-1"
+              aria-selected="true"
+              >Información General</a
+            >
+          </li>
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link"
+              id="ex2-tab-2"
+              data-mdb-toggle="tab"
+              href="#ex2-tabs-2"
+              role="tab"
+              aria-controls="ex2-tabs-2"
+              aria-selected="false"
+              >Menú 1</a
+            >
+          </li>
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link"
+              id="ex2-tab-3"
+              data-mdb-toggle="tab"
+              href="#ex2-tabs-3"
+              role="tab"
+              aria-controls="ex2-tabs-3"
+              aria-selected="false"
+              >Menú 2</a
+            >
+          </li>
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link"
+              id="ex2-tab-4"
+              data-mdb-toggle="tab"
+              href="#ex2-tabs-4"
+              role="tab"
+              aria-controls="ex2-tabs-4"
+              aria-selected="false"
+              >Menú 3</a
+            >
+          </li>
+        </ul>
+        <!-- Tabs navs -->
+
+        <!-- Tabs content -->
+        <div class="tab-content" id="ex2-content">
+          <div
+            class="tab-pane fade show active"
+            id="ex2-tabs-1"
+            role="tabpanel"
+            aria-labelledby="ex2-tab-1">
+            <div class="row">
+              <div class="col-md-4">Nombre<input type="text" id="formControlLg" name="nombre" class="form-control form-control-lg" disabled/></div>
+              <div class="col-md-4">Razón Social<input type="text" id="formControlLg" name="RazonSocial" class="form-control form-control-lg" disabled/></div>
+              <div class="col-md-4">Email <input type="text" id="formControlLg" name="email" class="form-control form-control-lg" disabled/></div>
+            </div>
+              <div class="row">
+                <div class="col-md-4">Horario <input type="text" id="formControlLg" name="Horario" class="form-control form-control-lg" disabled/></div>
+                <div class="col-md-4">Celular <input type="text" id="formControlLg" name="Celular" class="form-control form-control-lg" disabled/></div>
+                <div class="col-md-4">Número de habilitación <input type="text" id="formControlLg" name="nroHab" class="form-control form-control-lg" disabled/></div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">RUT <input type="text" id="formControlLg" name="rut" class="form-control form-control-lg" disabled/></div>
+                <div class="col-md-4">Precio de envío <input type="text" id="formControlLg" name="precioEnvio" class="form-control form-control-lg" disabled/></div>
+                <div class="col-md-4">Dirección <input type="text" id="formControlLg" name="direccion" class="form-control form-control-lg" disabled/></div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">Descripción<input type="text" id="formControlLg" name="Descripcion" class="form-control form-control-lg" disabled/></div>
+              </div>
+              <div class="container-img">
+                <img width="200px" src="https://logos-marcas.com/wp-content/uploads/2020/08/Burger-King-Logotipo-1999-presente.jpg">
+              </div>
+            </div>
+
+
+          <div
+            class="tab-pane fade"
+            id="ex2-tabs-2"
+            role="tabpanel"
+            aria-labelledby="ex2-tab-2">
+            <div class="row">
+              <div class="col-md-4">Nombre<input type="text" id="formControlLg" name="nombre" class="form-control form-control-lg" disabled/></div>
+              <div class="col-md-4">Categoría<input type="text" id="formControlLg" name="categoria" class="form-control form-control-lg" disabled/></div>
+              <div class="col-md-4">Promoción 
+                <!-- If promocion true -->
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckChecked"
+                    checked disabled
+                  />
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Si
+                  </label>
+              </div>
+              <!-- If promocion false
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault" disabled
+                />
+                <label class="form-check-label" for="flexCheckDefault">
+                  No
+                </label>
+              </div> -->
+            </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">Costo <input type="text" id="formControlLg" name="costo" class="form-control form-control-lg" disabled/></div>
+              <div class="col-md-3">Descuento <input type="text" id="formControlLg" name="descuento" class="form-control form-control-lg" disabled/></div>
+              <div class="col-md-6">Descripción<input type="text" id="formControlLg" name="Descripcion" class="form-control form-control-lg" disabled/></div>
+            </div>
+            <div class="container-img">
+              <img src="https://www.djsdugout.com/wp-content/uploads/2020/12/DJs2020_webLTOburgers_Godfather.jpg" id="img-menu">
+            </div>
+          </div>
+
+
+          <div
+            class="tab-pane fade"
+            id="ex2-tabs-3"
+            role="tabpanel"
+            aria-labelledby="ex2-tab-3">
+            <div class="row">
+              <div class="col-md-4">Nombre<input type="text" id="formControlLg" name="nombre" class="form-control form-control-lg" disabled/></div>
+              <div class="col-md-4">Categoría<input type="text" id="formControlLg" name="categoria" class="form-control form-control-lg" disabled/></div>
+              <div class="col-md-4">Promoción 
+                <!-- If promocion true -->
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckChecked"
+                    checked disabled
+                  />
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Si
+                  </label>
+              </div>
+              <!-- If promocion false
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault" disabled
+                />
+                <label class="form-check-label" for="flexCheckDefault">
+                  No
+                </label>
+              </div> -->
+            </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">Costo <input type="text" id="formControlLg" name="costo" class="form-control form-control-lg" disabled/></div>
+              <div class="col-md-3">Descuento <input type="text" id="formControlLg" name="descuento" class="form-control form-control-lg" disabled/></div>
+              <div class="col-md-6">Descripción<input type="text" id="formControlLg" name="Descripcion" class="form-control form-control-lg" disabled/></div>
+            </div>
+            <div class="container-img">
+              <img src="https://www.djsdugout.com/wp-content/uploads/2020/12/DJs2020_webLTOburgers_Godfather.jpg" id="img-menu">
+            </div>
+          </div>
+
+
+          <div
+          class="tab-pane fade"
+          id="ex2-tabs-4"
+          role="tabpanel"
+          aria-labelledby="ex2-tab-4">
+            <div class="row">
+              <div class="col-md-4">Nombre<input type="text" id="formControlLg" name="nombre" class="form-control form-control-lg" disabled/></div>
+              <div class="col-md-4">Categoría<input type="text" id="formControlLg" name="categoria" class="form-control form-control-lg" disabled/></div>
+              <div class="col-md-4">Promoción 
+                <!-- If promocion true -->
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckChecked"
+                    checked disabled
+                  />
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Si
+                  </label>
+              </div>
+              <!-- If promocion false
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault" disabled
+                />
+                <label class="form-check-label" for="flexCheckDefault">
+                  No
+                </label>
+              </div> -->
+            </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">Costo <input type="text" id="formControlLg" name="costo" class="form-control form-control-lg" disabled/></div>
+              <div class="col-md-3">Descuento <input type="text" id="formControlLg" name="descuento" class="form-control form-control-lg" disabled/></div>
+              <div class="col-md-6">Descripción<input type="text" id="formControlLg" name="Descripcion" class="form-control form-control-lg" disabled/></div>
+            </div>
+            <div class="container-img">
+              <img src="https://www.djsdugout.com/wp-content/uploads/2020/12/DJs2020_webLTOburgers_Godfather.jpg" id="img-menu">
+            </div>
+          </div>
+        </div>
+        <!-- Tabs content -->
+        <div class="buttons-cont">
+          <button type="button" class="btn btn-danger btn-rounded">Rechazar</button>
+          <button type="button" class="btn btn-warning btn-rounded">Aprobar</button>
+        </div>
+    </div>
+</div>
+
+
+

@@ -36,12 +36,13 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { AdministradorRestaurantesComponent } from './administradorRestaurantes/administradorRestaurantes.component';
 import { AdministradorAltaComponent } from './administradorAlta/administradorAlta.component';
 import { AdministradorUsuariosComponent } from './administradorUsuarios/administradorUsuarios.component';
+import { RegistroRestauranteDetalleComponent } from './registroRestauranteDetalle/registroRestauranteDetalle.component';
 
 
 
 
 @NgModule({
-  declarations: [							
+  declarations: [								
     AppComponent,
     LoginComponent,
     ChangePasswordComponent,
@@ -52,7 +53,9 @@ import { AdministradorUsuariosComponent } from './administradorUsuarios/administ
     AdministradorRestaurantesComponent,
     AdministradorRestaurantesComponent,
     AdministradorAltaComponent,
-    AdministradorUsuariosComponent
+    RegistroRestauranteDetalleComponent,
+    AdministradorUsuariosComponent,
+      RegistroRestauranteDetalleComponent
    ],
   imports: [
     BrowserModule,
