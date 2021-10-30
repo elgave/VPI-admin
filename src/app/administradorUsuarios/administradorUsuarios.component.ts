@@ -5,6 +5,7 @@ import { BusquedaUsuario } from 'src/app/models/usuario/busquedaUsuario';
 import { Usuario } from '../models/usuario/usuario';
 import { RechazoRest } from '../models/Restaurante/RechazoRest';
 import { Restaurante } from '../models/Restaurante/Restaurante';
+import { EliminarUsuario } from '../models/usuario/eliminarUsuario';
 
 @Component({
   selector: 'app-administradorUsuarios',
@@ -26,6 +27,7 @@ export class AdministradorUsuariosComponent implements OnInit {
   usuarioSeleccionado: Usuario;
   motivo: string = '';
   ready: boolean;
+  eliUsu:EliminarUsuario;
 
   constructor(
     private adminService: AdminService,
@@ -118,6 +120,26 @@ export class AdministradorUsuariosComponent implements OnInit {
     onKey(event: any) { 
       this.textoBusqueda = event.target.value;
       this.cargarRest();
+    }
+
+    eliminarUsuario(){
+      if(!this.isCliente){  
+         this.eliUsu = new EliminarUsuario(false,this.usuarioSeleccionado.email);
+          
+      }else{
+        this.eliUsu = new EliminarUsuario(true,this.usuarioSeleccionado.email);
+      }
+
+      this.adminService.eliminarUsuario(this.eliUsu).subscribe(
+        data=>{
+          
+          this.toastr.success('Usuario eliminado con exito', '',{
+            timeOut: 3000, positionClass: 'toast-top-center'
+          });
+          this.cargarRest();
+        }
+      )
+
     }
    
 
