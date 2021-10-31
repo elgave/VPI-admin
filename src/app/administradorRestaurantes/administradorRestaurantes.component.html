@@ -44,7 +44,7 @@
                             <td>
                                 <!--aporbar alta de usuario -->
                                 <!--Antes:  <a (click)="seleccionar(restaurante)"><i class="far fa-check-circle"></i></a>-->
-                                <a routerLink="/restauranteDetalle"><i class="fas fa-search"></i></a>
+                                <a (click)="detalleRest(restaurante.nombreRestaurante)"><i class="fas fa-search"></i></a>
                                 <!--rechazar alta de usuario -->
                                 <!--<a (click)="seleccionar(restaurante)" data-mdb-toggle="modal" data-mdb-target="#rechazarUsuario"><i class="fas fa-backspace"></i></a>-->
                                 <!--Esto genera la calificación VPI para el restaurante -->

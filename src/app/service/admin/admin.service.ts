@@ -7,6 +7,7 @@ import { BusquedaUsuario } from 'src/app/models/usuario/busquedaUsuario';
 import { Usuario } from '../../models/usuario/usuario';
 import { Admin } from '../../models/Admin/Admin';
 import { EliminarUsuario } from 'src/app/models/usuario/eliminarUsuario';
+import { Menu } from 'src/app/models/Restaurante/Menu';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +49,14 @@ export class AdminService {
 
   public registarAdmin(admin: Admin): Observable<Admin> {
     return this.httpClient.post<Admin>(this.authURL + 'registroAdmin', admin);
+  }
+
+  public getDatosRestaurante(nombreRestaurante: string): Observable<Restaurante> {
+    return this.httpClient.get<Restaurante>( `${this.authURL+'getDatosRestaurante?nombreRestaurante='}${nombreRestaurante}`);
+  }
+
+  public getMenusRestaurante(nombreRest: string): Observable<Menu[]> {
+    return this.httpClient.get<Menu[]>( `${this.authURL+'getMenusRestaurante?nombreRestaurante='}${nombreRest}`);
   }
 
   

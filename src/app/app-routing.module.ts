@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: 'restaurantes', component: AdministradorRestaurantesComponent},
   {path: 'altaAdministrador', component: AdministradorAltaComponent},
   {path: 'usuarios', component: AdministradorUsuariosComponent},
-  {path: 'restauranteDetalle', component: RegistroRestauranteDetalleComponent},
+  {path: 'restauranteDetalle/:nombreRest', component: RegistroRestauranteDetalleComponent},
   {path: '**', redirectTo: '', pathMatch: 'full'}
   
 

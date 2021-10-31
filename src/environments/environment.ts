@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   emailChangePassUrl: 'http://localhost:8282/auth/emailChangePassword',
   changePassUrl: 'http://localhost:8282/auth/changePassword',
-  base: 'http://localhost:8282/'
+  base: 'http://localhost:8282/',
+  s3url: 'https://vapaistorage.s3.sa-east-1.amazonaws.com'
 };
 
 /*
