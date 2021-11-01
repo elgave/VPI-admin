@@ -8,6 +8,7 @@ import { Usuario } from '../../models/usuario/usuario';
 import { Admin } from '../../models/Admin/Admin';
 import { EliminarUsuario } from 'src/app/models/usuario/eliminarUsuario';
 import { Menu } from 'src/app/models/Restaurante/Menu';
+import { RestauranteMasVentas } from 'src/app/models/Restaurante/RestauranteMasVentas';
 
 @Injectable({
   providedIn: 'root'
@@ -59,6 +60,9 @@ export class AdminService {
     return this.httpClient.get<Menu[]>( `${this.authURL+'getMenusRestaurante?nombreRestaurante='}${nombreRest}`);
   }
 
+  public restaurantesMasVentas(): Observable<RestauranteMasVentas[]> {
+    return this.httpClient.get<RestauranteMasVentas[]>( `${this.authURL}restaurantesMasVentas`);
+  }
   
   }
   
