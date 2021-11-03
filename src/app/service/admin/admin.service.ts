@@ -68,6 +68,10 @@ export class AdminService {
     return this.httpClient.get<Restaurante[]>( `${this.authURL+'getRestaurantes'}`);
   }
 
+  public restaurantesMasVentas(): Observable<RestauranteMasVentas[]> {
+    return this.httpClient.get<RestauranteMasVentas[]>( `${this.authURL}restaurantesMasVentas`);
+  }
+
   
   }
   

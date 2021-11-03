@@ -126,10 +126,11 @@ export class AdministradorRestaurantesComponent implements OnInit {
         
         this.cargarRest();
         },
-        err=>{
-          this.toastr.error( 'error', '',{
+        err=>{ 
+          this.toastr.error(err.error, '',{
             timeOut: 3000, positionClass: 'toast-top-center',
-        });
+          });
+          console.log(err.error);
         }
       );
     }
