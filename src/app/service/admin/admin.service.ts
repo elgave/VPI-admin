@@ -59,6 +59,14 @@ export class AdminService {
     return this.httpClient.get<Menu[]>( `${this.authURL+'getMenusRestaurante?nombreRestaurante='}${nombreRest}`);
   }
 
+  public calificarVPI(idRestaurante: string): Observable<any> {
+    return this.httpClient.post<any>(this.authURL + 'calificacionVPI', idRestaurante);
+  }
+
+  public getRestaurantes(): Observable<Restaurante[]> {
+    return this.httpClient.get<Restaurante[]>( `${this.authURL+'getRestaurantes'}`);
+  }
+
   
   }
   

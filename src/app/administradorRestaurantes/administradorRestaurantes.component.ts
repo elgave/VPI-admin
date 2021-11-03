@@ -17,6 +17,9 @@ export class AdministradorRestaurantesComponent implements OnInit {
   restauranteSeleccionado: Restaurante;
   rechazo: RechazoRest;
   motivo: string = '';
+  seleccionado: string;
+  capturado: string;
+  pendientes: boolean = true;
 
 
   constructor(
@@ -27,12 +30,13 @@ export class AdministradorRestaurantesComponent implements OnInit {
 
   ngOnInit() {
     this.ready = false;
-    this.cargarRest();
+    this.cargarRestPendientes();
+    this.seleccionado = "Pendientes";
     
 
   }
 
-  cargarRest() {
+  cargarRestPendientes() {
     this.adminService.getRestaurantesPendientes().subscribe(
       data => {
         this.restaurantes = data;       
@@ -56,13 +60,13 @@ export class AdministradorRestaurantesComponent implements OnInit {
           timeOut: 3000, positionClass: 'toast-top-center'
         });
         console.log(data);
-        this.cargarRest();
+        this.cargarRestPendientes();
         },
         err=>{
          this.toastr.error( 'error', '',{
             timeOut: 3000, positionClass: 'toast-top-center',
         });
-         this.cargarRest();
+         this.cargarRestPendientes();
         }
       );
     }
@@ -75,20 +79,62 @@ export class AdministradorRestaurantesComponent implements OnInit {
           timeOut: 3000, positionClass: 'toast-top-center'
         });
         
+        this.cargarRestPendientes();
+        },
+        err=>{
+          this.toastr.error( 'error', '',{
+            timeOut: 3000, positionClass: 'toast-top-center',
+        });
+          this.cargarRestPendientes();
+        }
+      );
+    }
+
+  detalleRest(nombreRest: string):void{
+    this.router.navigate(['/restauranteDetalle/',nombreRest]);
+  }
+
+  cargarRest() {
+    this.adminService.getRestaurantes().subscribe(
+      data => {
+        this.restaurantes = data;       
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  capturar() {
+    this.capturado = this.seleccionado;
+    if (this.capturado === "Pendientes"){
+      this.pendientes = true;
+      this.cargarRestPendientes();
+    }else{
+      this.pendientes = false;
+      this.cargarRest();
+    } 
+      
+  }
+
+  calificar(idRest: string){
+    this.adminService.calificarVPI(idRest).subscribe(
+      data=> {
+        this.toastr.success('Restaurante calificado con exito con exito', '',{
+          timeOut: 3000, positionClass: 'toast-top-center'
+        });
+        
         this.cargarRest();
         },
         err=>{
           this.toastr.error( 'error', '',{
             timeOut: 3000, positionClass: 'toast-top-center',
         });
-          this.cargarRest();
         }
       );
     }
 
-    detalleRest(nombreRest: string):void{
-      this.router.navigate(['/restauranteDetalle/',nombreRest]);
-    }
+  
     
 
 }
