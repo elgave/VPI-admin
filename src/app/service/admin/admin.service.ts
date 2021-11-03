@@ -8,6 +8,7 @@ import { Usuario } from '../../models/usuario/usuario';
 import { Admin } from '../../models/Admin/Admin';
 import { EliminarUsuario } from 'src/app/models/usuario/eliminarUsuario';
 import { Menu } from 'src/app/models/Restaurante/Menu';
+import { RestauranteMasVentas } from 'src/app/models/Restaurante/RestauranteMasVentas';
 
 @Injectable({
   providedIn: 'root'

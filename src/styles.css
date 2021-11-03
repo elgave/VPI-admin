@@ -2,6 +2,7 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
 background-color: #ECF3F7;
 }
