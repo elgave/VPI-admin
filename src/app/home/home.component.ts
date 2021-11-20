@@ -31,6 +31,7 @@ import {
 } from 'chart.js';
 import { AdminService } from '../service/admin/admin.service';
 import { RestauranteMasVentas } from '../models/Restaurante/RestauranteMasVentas';
+import { RestauranteCali } from '../models/Restaurante/RestauranteCali';
 
 Chart.register(
   ArcElement,
@@ -72,10 +73,26 @@ export class HomeComponent implements OnInit {
   myChart4: any;
   ready: boolean = false;
   restaurantesMasVentas: RestauranteMasVentas[] = [];
+  restaurantesCali: RestauranteCali[] = [];
+  restaurantesTiempo: RestauranteCali[] = [];
+  restCaliCliente: RestauranteCali[] = [];
+
   constructor(private adminService : AdminService) { }
 
   ngOnInit() {
 
+    this.cargarRestMasVentas();
+    this.cargarRestVPI();
+    this.cargarRestTiempo();
+    this.cargarRestCaliCliente();
+   
+
+    
+ 
+
+  }
+
+  cargarRestMasVentas(){
     this.adminService.restaurantesMasVentas().subscribe(
       data=>{
         this.restaurantesMasVentas = data;
@@ -84,18 +101,10 @@ export class HomeComponent implements OnInit {
         this.myChart = new Chart('myCanvasId',  {
           type: 'bar',
           data: {
-              labels: [this.restaurantesMasVentas[0].nombreRestaurante,this.restaurantesMasVentas[1].nombreRestaurante,
-              this.restaurantesMasVentas[2].nombreRestaurante, this.restaurantesMasVentas[3].nombreRestaurante,
-              this.restaurantesMasVentas[4].nombreRestaurante,this.restaurantesMasVentas[5].nombreRestaurante,
-              this.restaurantesMasVentas[6].nombreRestaurante,this.restaurantesMasVentas[7].nombreRestaurante,
-              this.restaurantesMasVentas[8].nombreRestaurante,this.restaurantesMasVentas[9].nombreRestaurante],
+              labels: [],
               datasets: [{
-                  label: '# of Votes',
-                  data: [this.restaurantesMasVentas[0].cantidadVentas,this.restaurantesMasVentas[1].cantidadVentas,
-                  this.restaurantesMasVentas[2].cantidadVentas, this.restaurantesMasVentas[3].cantidadVentas,
-                  this.restaurantesMasVentas[4].cantidadVentas,this.restaurantesMasVentas[5].cantidadVentas,
-                  this.restaurantesMasVentas[6].cantidadVentas,this.restaurantesMasVentas[7].cantidadVentas,
-                  this.restaurantesMasVentas[8].cantidadVentas,this.restaurantesMasVentas[9].cantidadVentas],
+                  label: 'Cant. ventas',
+                  data: [],
                   backgroundColor: [
                       'rgba(255, 99, 132, 0.2)',
                       'rgba(54, 162, 235, 0.2)',
@@ -120,108 +129,176 @@ export class HomeComponent implements OnInit {
             maintainAspectRatio: true
           }
       });
+
+      for (const rest of this.restaurantesMasVentas) {
+        var nombre = rest.nombreRestaurante;
+        var cant =  rest.cantidadVentas;
+        this.myChart.data.labels.push(nombre);
+        this.myChart.data.datasets[0].data.push(cant);
+      }
+      this.myChart.update();
+
       },
       err => {
         console.log(err);
       }
     );
+  }
 
-    this.myChart2 = new Chart('myCanvasId2', {
-      type: 'pie',
-      data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-          datasets: [{
-              label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
-          }]
+  cargarRestVPI(){
+    this.adminService.restaurantesMejorCalificados().subscribe(
+      data=>{
+        this.restaurantesCali = data;
+        this.ready = true;
+        this.myChart4 = new Chart('myCanvasId4', {
+          type: 'doughnut',
+          data: {
+              labels: [],
+              datasets: [{
+                  label: '# of Votes',
+                  data: [],
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(255, 159, 64, 0.2)'
+                  ],
+                  borderColor: [
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)'
+                  ],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: true,
+          }
+        });
+
+        for (const rest of this.restaurantesCali) {
+          var nombre = rest.nombreRestaurante;
+          var cali =  rest.calificacion;
+          this.myChart4.data.labels.push(nombre);
+          this.myChart4.data.datasets[0].data.push(cali);
+        }
+        this.myChart4.update();
+
+
       },
-      options: {
-        responsive: true,
-        maintainAspectRatio: true
+      err => {
+        console.log(err);
       }
-  });
-
-  this.myChart3 = new Chart('myCanvasId3', {
-    type: 'line',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: true
-    }
-});
-
-
-this.myChart4 = new Chart('myCanvasId4', {
-  type: 'doughnut',
-  data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1
-      }]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: true,
+    );
   }
-});
 
+  cargarRestTiempo(){
+    this.adminService.restaurantesMejorTiempo().subscribe(
+      data=>{
+        this.restaurantesTiempo = data;
+        this.ready = true;
+        this.myChart3 = new Chart('myCanvasId3', {
+          type: 'line',
+          data: {
+              labels:  [],
+              datasets: [{
+                  label: 'Tiempo de entrega promedio',
+                  data: [],
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(255, 159, 64, 0.2)'
+                  ],
+                  borderColor: [
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)'
+                  ],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: true
+          }
+      });
+
+      for (const rest of this.restaurantesTiempo) {
+        var nombre = rest.nombreRestaurante;
+        var tiempo =  rest.calificacion;
+        this.myChart3.data.labels.push(nombre);
+        this.myChart3.data.datasets[0].data.push(tiempo);
+      }
+      this.myChart3.update();
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
+
+  cargarRestCaliCliente(){
+    this.adminService.restaurantesMejorCaliCliente().subscribe(
+      data=>{
+        this.restCaliCliente = data;
+        this.ready = true;
+        this.myChart2 = new Chart('myCanvasId2', {
+          type: 'pie',
+          data: {
+              labels: [],
+              datasets: [{
+                  label: '# of Votes',
+                  data: [],
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(255, 159, 64, 0.2)'
+                  ],
+                  borderColor: [
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)'
+                  ],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: true
+          }
+      });   
+
+      for (const rest of this.restCaliCliente) {
+        var nombre = rest.nombreRestaurante;
+        var cali =  rest.calificacion;
+        this.myChart2.data.labels.push(nombre);
+        this.myChart2.data.datasets[0].data.push(cali);
+      }
+      this.myChart2.update();
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+
 }

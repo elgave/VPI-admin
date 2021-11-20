@@ -9,6 +9,9 @@ import { Admin } from '../../models/Admin/Admin';
 import { EliminarUsuario } from 'src/app/models/usuario/eliminarUsuario';
 import { Menu } from 'src/app/models/Restaurante/Menu';
 import { RestauranteMasVentas } from 'src/app/models/Restaurante/RestauranteMasVentas';
+import { RestauranteCali } from 'src/app/models/Restaurante/RestauranteCali';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -70,6 +73,18 @@ export class AdminService {
 
   public restaurantesMasVentas(): Observable<RestauranteMasVentas[]> {
     return this.httpClient.get<RestauranteMasVentas[]>( `${this.authURL}restaurantesMasVentas`);
+  }
+
+  public restaurantesMejorCalificados(): Observable<RestauranteCali[]> {
+    return this.httpClient.get<RestauranteCali[]>( `${this.authURL}restaurantesMejorVPI`);
+  }
+
+  public restaurantesMejorTiempo(): Observable<RestauranteCali[]> {
+    return this.httpClient.get<RestauranteCali[]>( `${this.authURL}restaurantesMejorTiempo`);
+  }
+
+  public restaurantesMejorCaliCliente(): Observable<RestauranteCali[]> {
+    return this.httpClient.get<RestauranteCali[]>( `${this.authURL}restaurantesMejorCali`);
   }
 
   
