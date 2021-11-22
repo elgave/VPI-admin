@@ -10,6 +10,7 @@ import { EliminarUsuario } from 'src/app/models/usuario/eliminarUsuario';
 import { Menu } from 'src/app/models/Restaurante/Menu';
 import { RestauranteMasVentas } from 'src/app/models/Restaurante/RestauranteMasVentas';
 import { RestauranteCali } from 'src/app/models/Restaurante/RestauranteCali';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -18,8 +19,9 @@ import { RestauranteCali } from 'src/app/models/Restaurante/RestauranteCali';
 })
 export class AdminService {
 
-  authURL = 'http://localhost:8282/admin/'
-
+  Base = environment.baseauth;
+  authURL = this.Base
+  
   constructor(private httpClient: HttpClient) { }
   
   
