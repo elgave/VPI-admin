@@ -19,7 +19,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AdminService {
 
-  Base = environment.baseauth;
+  Base = environment.baseadmin;
   authURL = this.Base
   
   constructor(private httpClient: HttpClient) { }
