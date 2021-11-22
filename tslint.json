@@ -1,4 +1,8 @@
 {
+  "angularCompilerOptions": {
+    "disableTypeScriptVersionCheck": true
+  },
+
   "extends": "tslint:recommended",
   "rules": {
     "array-type": false,

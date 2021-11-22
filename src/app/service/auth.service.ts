@@ -7,15 +7,17 @@ import { JwtDto } from '../models/usuario/jwt-dto';
 import { NuevoRestaurante } from '../models/Restaurante/NuevoRestaurante';
 import { NuevoMenu } from '../models/Restaurante/NuevoMenu';
 import { Restaurante } from '../models/Restaurante/Restaurante';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  authURL = 'http://localhost:8282/auth/'
+  Base = environment.baseauth;
+  authURL = this.Base
   authURL2 = 'http://localhost:8282/cliente/'
-
+  
 constructor(private httpClient: HttpClient) { }
 
 public login(usuarioLogin: UsuarioLogin): Observable<JwtDto>{
